@@ -65,17 +65,17 @@ void	*routine(void *arg)
 	if (start_supervisor(philo))
 		return (NULL);
 	if (data->philo_num == 1)
-	{
-		single_philo(philo);
-		return (NULL);
-	}
+		return (single_philo(philo), NULL);
 	if (philo->id % 2 == 0)
 		ft_usleep(data->eat_time);
 	while (!is_stopped(data))
 	{
 		take_forks(philo);
 		if (eat_and_check(philo))
+		{
+			finish_meal(philo);
 			break ;
+		}
 		finish_meal(philo);
 		sleep_and_think(philo);
 	}
