@@ -62,15 +62,11 @@ void    clear_data(t_data *data);
 void    ft_exit(t_data *data);
 
 /*
-** utils: utils.c / routine_utils.c
+** utils.c
 */
 int     error(char *str, t_data *data);
 uint64_t get_time(void);
-int	ft_usleep(uint64_t time);
-void	print_status(t_data *data, int id, char *msg);
-int	is_stopped(t_data *data);
-void	single_philo(t_philo *philo);
-int	start_supervisor(t_philo *philo);
+int     ft_usleep(useconds_t time);
 
 /*
 ** routine.c

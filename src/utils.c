@@ -6,8 +6,7 @@
 
 int	error(char *str, t_data *data)
 {
-	/* Quitamos el "\n" para que no modifique timings */
-	printf("%s", str);
+	printf("%s\n", str);
 	if (data)
 		ft_exit(data);
 	return (1);
@@ -22,18 +21,12 @@ uint64_t	get_time(void)
 	return ((uint64_t)tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-int	ft_usleep(uint64_t time)
+int	ft_usleep(useconds_t time)
 {
 	uint64_t	start;
 
 	start = get_time();
 	while (get_time() - start < time)
-	{
-		uint64_t	remain = time - (get_time() - start);
-		if (remain > 500)
-			usleep(remain * 500);
-		else
-			usleep(100);
-	}
+		usleep(time / 10);
 	return (0);
 }

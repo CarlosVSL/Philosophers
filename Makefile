@@ -7,7 +7,6 @@ SRC        = \
 	src/main.c \
 	src/args.c \
 	src/init.c \
-	src/routine_utils.c \
 	src/routine.c \
 	src/supervisor.c \
 	src/structs.c \

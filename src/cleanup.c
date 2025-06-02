@@ -1,5 +1,4 @@
 #include "../include/philo.h"
-
 void	clear_data(t_data *data)
 {
 	if (data->tid)
