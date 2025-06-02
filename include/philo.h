@@ -66,7 +66,7 @@ void    ft_exit(t_data *data);
 */
 int     error(char *str, t_data *data);
 uint64_t get_time(void);
-int     ft_usleep(useconds_t time);
+int ft_usleep(uint64_t ms);
 void	print_status(t_data *data, int id, char *msg);
 int	is_stopped(t_data *data);
 void	single_philo(t_philo *philo);
