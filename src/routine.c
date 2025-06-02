@@ -1,6 +1,5 @@
 #include "../include/philo.h"
 
-
 static void	take_forks(t_philo *philo)
 {
 	t_data	*data;
