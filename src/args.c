@@ -56,8 +56,8 @@ static int	check_arg_range(long val, int index)
 	}
 	if (index == 5 && val < 1)
 	{
-		printf("Error: number_of_times_each_philosopher_must_eat must be
-			>= 1\n");
+		printf("Error: number_of_times_each_philosopher_must_eat must be"
+			">= 1\n");
 		return (1);
 	}
 	return (0);
