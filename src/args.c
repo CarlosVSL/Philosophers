@@ -42,22 +42,22 @@ static int	validate_args(int argc, char **argv)
 			return (printf("Error: time values must be >= 1\n"), 1);
 		if (i == 5 && val < 1)
 			return (printf("Error: number_of_times_each_philosopher_"
-				"must_be >= 1\n"), 1);
+					"must_be >= 1\n"), 1);
 	}
 	return (0);
 }
 
 static void	fill_data(int argc, char **argv, t_data *data)
 {
-	data->philo_num  = (int)ft_atol(argv[1]);
+	data->philo_num = (int)ft_atol(argv[1]);
 	data->death_time = (uint64_t)ft_atol(argv[2]);
-	data->eat_time   = (uint64_t)ft_atol(argv[3]);
+	data->eat_time = (uint64_t)ft_atol(argv[3]);
 	data->sleep_time = (uint64_t)ft_atol(argv[4]);
 	if (argc == 6)
 		data->meals_nb = (int)ft_atol(argv[5]);
 	else
 		data->meals_nb = 0;
-	data->dead     = 0;
+	data->dead = 0;
 	data->finished = 0;
 }
 
