@@ -1,0 +1,84 @@
+#include "../include/philo.h"
+
+
+static void	take_forks(t_philo *philo)
+{
+	t_data	*data;
+
+	data = philo->data;
+	pthread_mutex_lock(philo->r_fork);
+	print_status(data, philo->id, "has taken a fork");
+	pthread_mutex_lock(philo->l_fork);
+	print_status(data, philo->id, "has taken a fork");
+}
+
+static int	eat_and_check(t_philo *philo)
+{
+	t_data	*data;
+	int		stop;
+
+	data = philo->data;
+	pthread_mutex_lock(&philo->lock);
+	philo->eating = 1;
+	philo->die_time = get_time() + data->death_time;
+	pthread_mutex_unlock(&philo->lock);
+	print_status(data, philo->id, "is eating");
+	ft_usleep(data->eat_time);
+	pthread_mutex_lock(&data->lock);
+	philo->eat_cont++;
+	if (data->meals_nb > 0
+		&& philo->eat_cont == data->meals_nb)
+		data->finished++;
+	if (data->meals_nb > 0
+		&& data->finished == data->philo_num)
+		data->dead = 1;
+	stop = data->dead;
+	pthread_mutex_unlock(&data->lock);
+	return (stop);
+}
+
+static void	finish_meal(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->lock);
+	philo->eating = 0;
+	pthread_mutex_unlock(&philo->lock);
+	pthread_mutex_unlock(philo->r_fork);
+	pthread_mutex_unlock(philo->l_fork);
+}
+
+static void	sleep_and_think(t_philo *philo)
+{
+	t_data	*data;
+
+	data = philo->data;
+	print_status(data, philo->id, "is sleeping");
+	ft_usleep(data->sleep_time);
+	print_status(data, philo->id, "is thinking");
+}
+
+void	*routine(void *arg)
+{
+	t_philo	*philo;
+	t_data	*data;
+
+	philo = (t_philo *)arg;
+	data = philo->data;
+	if (start_supervisor(philo))
+		return (NULL);
+	if (data->philo_num == 1)
+	{
+		single_philo(philo);
+		return (NULL);
+	}
+	if (philo->id % 2 == 0)
+		ft_usleep(data->eat_time);
+	while (!is_stopped(data))
+	{
+		take_forks(philo);
+		if (eat_and_check(philo))
+			break ;
+		finish_meal(philo);
+		sleep_and_think(philo);
+	}
+	return (NULL);
+}
