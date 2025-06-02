@@ -30,19 +30,20 @@ static int	validate_args(int argc, char **argv)
 	while (++i < argc)
 	{
 		if (argv[i][0] == '\0')
-			return (printf("Error: argument %d is empty\n", i), 1);
+			/* ← Aquí quitamos el "\n" extra */
+			return (printf("Error: argument %d is empty", i), 1);
 		j = -1;
 		while (argv[i][++j])
 			if (!ft_isdigit(argv[i][j]))
-				return (printf("Error: argument %d is not numeric\n", i), 1);
+				/* ← También quitamos el "\n" extra */
+				return (printf("Error: argument %d is not numeric", i), 1);
 		val = ft_atol(argv[i]);
 		if (i == 1 && (val < 1 || val > 200))
-			return (printf("Error: number_of_philosophers must be 1-200\n"), 1);
+			return (printf("Error: number_of_philosophers must be 1-200"), 1);
 		if (i >= 2 && val < 1)
-			return (printf("Error: time values must be >= 1\n"), 1);
+			return (printf("Error: time values must be >= 1"), 1);
 		if (i == 5 && val < 1)
-			return (printf("Error: number_of_times_each_philosopher_"
-					"must_be >= 1\n"), 1);
+			return (printf("Error: number_of_times_each_philosopher_must_be >= 1"), 1);
 	}
 	return (0);
 }

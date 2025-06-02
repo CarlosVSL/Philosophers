@@ -6,7 +6,8 @@
 
 int	error(char *str, t_data *data)
 {
-	printf("%s\n", str);
+	/* Quitamos el "\n" para que no modifique timings */
+	printf("%s", str);
 	if (data)
 		ft_exit(data);
 	return (1);
