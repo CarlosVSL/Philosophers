@@ -7,7 +7,7 @@ static void	take_forks(t_philo *philo)
 	pthread_mutex_t	*second;
 
 	d = philo->data;
-	if (philo->id % 2 == 0)
+	if (philo->l_fork < philo->r_fork)
 	{
 		first = philo->l_fork;
 		second = philo->r_fork;
