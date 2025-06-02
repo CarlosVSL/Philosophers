@@ -56,7 +56,8 @@ static int	check_arg_range(long val, int index)
 	}
 	if (index == 5 && val < 1)
 	{
-		printf("Error: number_of_times_each_philosopher_must_eat must be >= 1\n");
+		printf("Error: number_of_times_each_philosopher_must_eat must be
+			>= 1\n");
 		return (1);
 	}
 	return (0);
@@ -76,15 +77,15 @@ int	check_args(int argc, char **argv, t_data *data)
 		if (check_arg_range(val, i))
 			return (1);
 	}
-	data->philo_num  = (int)ft_atol(argv[1]);
+	data->philo_num = (int)ft_atol(argv[1]);
 	data->death_time = (uint64_t)ft_atol(argv[2]);
-	data->eat_time   = (uint64_t)ft_atol(argv[3]);
+	data->eat_time = (uint64_t)ft_atol(argv[3]);
 	data->sleep_time = (uint64_t)ft_atol(argv[4]);
 	if (argc == 6)
 		data->meals_nb = (int)ft_atol(argv[5]);
 	else
 		data->meals_nb = 0;
-	data->dead     = 0;
+	data->dead = 0;
 	data->finished = 0;
 	return (0);
 }

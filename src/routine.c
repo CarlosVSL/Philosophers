@@ -88,7 +88,7 @@ void	*routine(void *arg)
 	t_data		*data;
 
 	philo = (t_philo *)arg;
-	data  = philo->data;
+	data = philo->data;
 	if (start_supervisor(philo))
 		return (NULL);
 	if (data->philo_num == 1)

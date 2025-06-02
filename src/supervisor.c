@@ -2,8 +2,8 @@
 
 static int	check_philo_death(t_philo *ph)
 {
-    t_data		*d;
-    uint64_t	now;
+	t_data		*d;
+	uint64_t	now;
 
 	d = ph->data;
 	pthread_mutex_lock(&ph->lock);
@@ -43,7 +43,7 @@ static int	check_global_dead(t_data *d)
 void	*supervisor(void *arg)
 {
 	t_philo	*ph;
-    t_data  *d;
+	t_data	*d;
 
 	ph = (t_philo *)arg;
 	d = ph->data;
