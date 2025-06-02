@@ -1,4 +1,3 @@
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -40,17 +39,17 @@ struct s_data
 	pthread_mutex_t	write;
 };
 
-int		check_args(int argc, char **argv, t_data *data);
-int		init_data(t_data *data);
-int		launch_simulation(t_data *data);
-void	clear_data(t_data *data);
-void	ft_exit(t_data *data);
-int		error(char *str, t_data *data);
-uint64_t	get_time(void);
-int		ft_usleep(useconds_t time);
-void	*routine(void *arg);
-void	print_status(t_data *data, int id, char *msg);
-int		start_supervisor(t_philo *philo);
-void	*supervisor(void *arg);
+int		    check_args(int argc, char **argv, t_data *data);
+int		    init_data(t_data *data);
+int		    launch_simulation(t_data *data);
+void	    clear_data(t_data *data);
+void	    ft_exit(t_data *data);
+int		    error(char *str, t_data *data);
+uint64_t    get_time(void);
+int		    ft_usleep(useconds_t time);
+void	    *routine(void *arg);
+void	    print_status(t_data *data, int id, char *msg);
+int		    start_supervisor(t_philo *philo);
+void	    *supervisor(void *arg);
 
 #endif
