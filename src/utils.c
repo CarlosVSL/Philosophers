@@ -21,12 +21,18 @@ uint64_t	get_time(void)
 	return ((uint64_t)tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-int	ft_usleep(useconds_t time)
+int	ft_usleep(uint64_t time)
 {
 	uint64_t	start;
 
 	start = get_time();
 	while (get_time() - start < time)
-		usleep(time / 10);
+	{
+		uint64_t	remain = time - (get_time() - start);
+		if (remain > 500)
+			usleep(remain * 500);
+		else
+			usleep(100);
+	}
 	return (0);
 }
