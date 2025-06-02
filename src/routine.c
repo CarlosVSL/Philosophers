@@ -31,17 +31,18 @@ static int	eat_and_check(t_philo *philo)
 	data = philo->data;
 	pthread_mutex_lock(&philo->lock);
 	philo->eating = 1;
-	philo->die_time = get_time() + data->death_time;
 	pthread_mutex_unlock(&philo->lock);
 	print_status(data, philo->id, "is eating");
 	ft_usleep(data->eat_time);
+	pthread_mutex_lock(&philo->lock);
+	philo->eating = 0;
+	philo->die_time = get_time() + data->death_time;
+	pthread_mutex_unlock(&philo->lock);
 	pthread_mutex_lock(&data->lock);
 	philo->eat_cont++;
-	if (data->meals_nb > 0
-		&& philo->eat_cont == data->meals_nb)
+	if (data->meals_nb > 0 && philo->eat_cont == data->meals_nb)
 		data->finished++;
-	if (data->meals_nb > 0
-		&& data->finished == data->philo_num)
+	if (data->meals_nb > 0 && data->finished == data->philo_num)
 		data->dead = 1;
 	stop = data->dead;
 	pthread_mutex_unlock(&data->lock);
