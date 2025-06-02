@@ -29,8 +29,12 @@ void	single_philo(t_philo *philo)
 	pthread_mutex_lock(&data->lock);
 	if (!data->dead)
 	{
+		pthread_mutex_lock(&data->write);
+		printf("%llu %d died\n",
+			(unsigned long long)(get_time() - data->start_time),
+			philo->id);
+		pthread_mutex_unlock(&data->write);
 		data->dead = 1;
-		print_status(data, philo->id, "died");
 	}
 	pthread_mutex_unlock(&data->lock);
 	pthread_mutex_unlock(philo->r_fork);
