@@ -2,13 +2,25 @@
 
 static void	take_forks(t_philo *philo)
 {
-	t_data	*data;
+	t_data			*d;
+	pthread_mutex_t	*first;
+	pthread_mutex_t	*second;
 
-	data = philo->data;
-	pthread_mutex_lock(philo->r_fork);
-	print_status(data, philo->id, "has taken a fork");
-	pthread_mutex_lock(philo->l_fork);
-	print_status(data, philo->id, "has taken a fork");
+	d = philo->data;
+	if (philo->id % 2 == 0)
+	{
+		first = philo->l_fork;
+		second = philo->r_fork;
+	}
+	else
+	{
+		first = philo->r_fork;
+		second = philo->l_fork;
+	}
+	pthread_mutex_lock(first);
+	print_status(d, philo->id, "has taken a fork");
+	pthread_mutex_lock(second);
+	print_status(d, philo->id, "has taken a fork");
 }
 
 static int	eat_and_check(t_philo *philo)
