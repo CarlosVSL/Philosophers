@@ -72,6 +72,8 @@ int     ft_usleep(useconds_t time);
 ** routine.c
 */
 void    *routine(void *arg);
+void	print_status(t_data *data, int id, char *msg);
+int	start_supervisor(t_philo *philo);
 
 /*
 ** supervisor.c

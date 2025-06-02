@@ -8,6 +8,7 @@ SRC        = \
 	src/args.c \
 	src/init.c \
 	src/routine.c \
+	src/routine_utils.c \
 	src/supervisor.c \
 	src/structs.c \
 	src/cleanup.c \

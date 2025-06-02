@@ -1,4 +1,5 @@
 #include "../include/philo.h"
+
 void	clear_data(t_data *data)
 {
 	if (data->tid)
@@ -22,18 +23,18 @@ void	ft_exit(t_data *data)
 {
 	int	i;
 
+	i = 0;
 	if (data->forks)
 	{
-		i = 0;
 		while (i < data->philo_num)
 		{
 			pthread_mutex_destroy(&data->forks[i]);
 			i++;
 		}
 	}
+	i = 0;
 	if (data->philos)
 	{
-		i = 0;
 		while (i < data->philo_num)
 		{
 			pthread_mutex_destroy(&data->philos[i].lock);

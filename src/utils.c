@@ -3,7 +3,6 @@
 ** @brief  Print an error message, clean up and exit.
 ** @return Always returns 1.
 */
-
 int	error(char *str, t_data *data)
 {
 	printf("%s\n", str);
