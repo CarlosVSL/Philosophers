@@ -44,17 +44,19 @@ void	print_status(t_data *data, int id, char *msg)
 {
 	uint64_t	ts;
 
+	pthread_mutex_lock(&data->lock);
+	if (data->dead)
+	{
+		pthread_mutex_unlock(&data->lock);
+		return ;
+	}
 	pthread_mutex_lock(&data->write);
 	ts = get_time() - data->start_time;
-	if (!data->dead)
-	{
-		printf("%llu %d %s\n",
-			(unsigned long long)ts,
-			id,
-			msg);
-	}
+	printf("%llu %d %s\n", (unsigned long long)ts, id, msg);
 	pthread_mutex_unlock(&data->write);
+	pthread_mutex_unlock(&data->lock);
 }
+
 
 int	is_stopped(t_data *data)
 {

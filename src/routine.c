@@ -82,6 +82,8 @@ void	*routine(void *arg)
 		ft_usleep(data->eat_time);
 	while (!is_stopped(data))
 	{
+		if (is_stopped(data))
+			break ;
 		take_forks(philo);
 		if (eat_and_check(philo))
 		{
